@@ -1,8 +1,7 @@
 'use client';
 
-import Image from 'next/image';
 import React, { useEffect, useRef } from 'react';
-import { easeOut, motion, useAnimation, useInView } from 'framer-motion';
+import { motion, useAnimation, useInView } from 'framer-motion';
 
 const travelItems = [
   {

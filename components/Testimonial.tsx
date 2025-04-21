@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface TravelCard {
   id: number;
@@ -13,14 +12,14 @@ interface TravelCard {
 }
 
 import TestimonialProfile2 from '../public/TestimonialProfile2.jpg';
-import TestimonialCard from './TestimonialCard';
 import Image, { StaticImageData } from 'next/image';
+import { Quote } from 'lucide-react';
 
 export default function TravelCardCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [width, setWidth] = useState(0);
   const carousel = useRef<HTMLDivElement>(null);
-  const controls = useAnimation();
+  // const controls = useAnimation();
   const [hoveredId, setHoveredId] = useState<null | number>(null);
 
   const travelCards: TravelCard[] = [
@@ -72,13 +71,13 @@ export default function TravelCardCarousel() {
     }
   }, []);
 
-  const nextCard = () => {
-    setActiveIndex((prev) => (prev === travelCards.length - 1 ? 0 : prev + 1));
-  };
+  // const nextCard = () => {
+  //   setActiveIndex((prev) => (prev === travelCards.length - 1 ? 0 : prev + 1));
+  // };
 
-  const prevCard = () => {
-    setActiveIndex((prev) => (prev === 0 ? travelCards.length - 1 : prev - 1));
-  };
+  // const prevCard = () => {
+  //   setActiveIndex((prev) => (prev === 0 ? travelCards.length - 1 : prev - 1));
+  // };
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 py-12">
