@@ -21,7 +21,7 @@ export default function TravelCardCarousel() {
   const [width, setWidth] = useState(0);
   const carousel = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
-  const [hoveredId, setHoveredId] = useState(null);
+  const [hoveredId, setHoveredId] = useState<null | number>(null);
 
   const travelCards: TravelCard[] = [
     {
