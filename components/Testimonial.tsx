@@ -71,152 +71,122 @@ export default function TravelCardCarousel() {
     }
   }, []);
 
-  // const nextCard = () => {
-  //   setActiveIndex((prev) => (prev === travelCards.length - 1 ? 0 : prev + 1));
-  // };
-
-  // const prevCard = () => {
-  //   setActiveIndex((prev) => (prev === 0 ? travelCards.length - 1 : prev - 1));
-  // };
-
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 py-12">
-      <div className="relative">
-        {/* Featured Card */}
+    <div className="w-full max-w-7xl mx-auto px-4 py-12 relative">
+      <h2 className="text-5xl max-sm:text-4xl font-normal text-center mb-10">
+        What Our Travelers Say
+      </h2>
+      {/* Optional Illustration */}
+      <div className="absolute right-0 sm:right-10 -top-0 opacity-80 ">
+        <Image
+          src="/cheers.png"
+          alt="Cheers"
+          width={320}
+          height={220}
+          className="w-52 h-52 sm:w-[420px] sm:h-[420px] object-contain"
+        />
+      </div>
 
-        {/* Carousel */}
-        <div className="mt-36 max-sm:mt-24">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-5xl max-sm:text-4xl font-normal text-center mb-12">
-              What Our Travelers Say
-            </h2>
-            {/* Optional Illustration */}
-            <div className="absolute right-0 sm:right-10 -top-32 opacity-80 ">
-              <Image
-                src="/cheers.png"
-                alt="Cheers"
-                width={320}
-                height={220}
-                className="w-52 h-52 sm:w-[320px] sm:h-[220px] object-contain"
-              />
-            </div>
-            {/* <div className="flex gap-2 z-10">
-              <button
-                onClick={prevCard}
-                className="p-2 rounded-full bg-teal-50 hover:bg-teal-100 transition-colors"
-                aria-label="Previous card"
-              >
-                <ChevronLeft className="h-5 w-5 text-teal-700" />
-              </button>
-              <button
-                onClick={nextCard}
-                className="p-2 rounded-full bg-teal-50 hover:bg-teal-100 transition-colors"
-                aria-label="Next card"
-              >
-                <ChevronRight className="h-5 w-5 text-teal-700" />
-              </button>
-            </div> */}
-          </div>
-
+      {/* Carousel */}
+      <div className="overflow-hidden py-10">
+        <motion.div
+          ref={carousel}
+          className="py-20 px-10 relative "
+          whileTap={{ cursor: 'grabbing' }}
+        >
           <motion.div
-            ref={carousel}
-            className="overflow-hidden py-20 px-10 relative"
-            whileTap={{ cursor: 'grabbing' }}
+            className="flex gap-6"
+            drag="x"
+            dragConstraints={{ right: 0, left: -width }}
+            animate={{ x: -activeIndex * (300 + 24) }}
+            transition={{ type: 'spring', damping: 20, stiffness: 100 }}
           >
-            <motion.div
-              className="flex gap-6"
-              drag="x"
-              dragConstraints={{ right: 0, left: -width }}
-              animate={{ x: -activeIndex * (300 + 24) }}
-              transition={{ type: 'spring', damping: 20, stiffness: 100 }}
-            >
-              {travelCards.map((card) => (
-                <div key={card.id} className="min-w-[300px] h-[320px] relative">
-                  {/* Background card - rotates left on hover */}
-                  <motion.div
-                    className="absolute top-0 left-0 w-full h-full bg-amber-100 rounded-3xl overflow-hidden pointer-events-none"
-                    initial={{ zIndex: 0 }}
-                    variants={{
-                      initial: {
-                        rotate: 0,
-                        y: 0,
-                        x: 0,
-                        scale: 1,
-                        zIndex: 0,
-                      },
-                      hover: {
-                        rotate: -15,
-                        y: -70,
-                        x: -100,
-                        scale: 1.02,
-                        zIndex: 0,
-                        backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                      },
-                    }}
-                    animate={
-                      // This ties the animation to the hover state of the parent group
-                      hoveredId === card.id ? 'hover' : 'initial'
-                    }
-                    transition={{ type: 'tween', duration: 0.3 }}
-                  >
-                    <div className="h-full w-full overflow-hidden rounded-3xl">
-                      <Image
-                        alt={card.name}
-                        src={card.image as string}
-                        width={1000}
-                        height={1000}
-                        className="object-cover h-full w-full"
-                      />
-                    </div>
-                  </motion.div>
-
-                  {/* Foreground card - rotates right on hover */}
-                  <motion.div
-                    className="absolute top-0 left-0 w-full h-full bg-amber-100 rounded-3xl p-6 flex flex-col justify-between cursor-pointer"
-                    initial={{ zIndex: 1 }}
-                    whileHover={{
-                      rotate: 15,
-                      y: -10,
-                      x: 100,
+            {travelCards.map((card) => (
+              <div key={card.id} className="min-w-[300px] h-[320px] relative">
+                {/* Background card - rotates left on hover */}
+                <motion.div
+                  className="absolute top-0 left-0 w-full h-full bg-amber-100 rounded-3xl overflow-hidden pointer-events-none"
+                  initial={{ zIndex: 0 }}
+                  variants={{
+                    initial: {
+                      rotate: 0,
+                      y: 0,
+                      x: 0,
+                      scale: 1,
+                      zIndex: 0,
+                    },
+                    hover: {
+                      rotate: -15,
+                      y: -70,
+                      x: -100,
                       scale: 1.02,
-                      zIndex: 10,
-                      backgroundColor: 'rgba(255, 255, 255, 1)',
-                    }}
-                    animate={hoveredId === card.id ? 'hover' : 'initial'}
-                    onHoverStart={() => setHoveredId(card.id)}
-                    onHoverEnd={() => setHoveredId(null)}
-                    transition={{ type: 'tween', duration: 0.3 }}
-                  >
-                    <div>
-                      <h3 className="text-2xl font-bold text-gray-800">
-                        {card.name}
-                      </h3>
-                      <p className="text-gray-600">{card.subtitle}</p>
-                    </div>
-                    <div>
-                      <Quote className="text-teal-700 mb-2 h-6 w-6" />
-                      <p className="text-gray-700">{card.quote}</p>
-                    </div>
-                  </motion.div>
-                </div>
-              ))}
-            </motion.div>
+                      zIndex: 0,
+                      backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                    },
+                  }}
+                  animate={
+                    // This ties the animation to the hover state of the parent group
+                    hoveredId === card.id ? 'hover' : 'initial'
+                  }
+                  transition={{ type: 'tween', duration: 0.3 }}
+                >
+                  <div className="h-full w-full overflow-hidden rounded-3xl">
+                    <Image
+                      alt={card.name}
+                      src={card.image as string}
+                      width={1000}
+                      height={1000}
+                      className="object-cover h-full w-full"
+                    />
+                  </div>
+                </motion.div>
 
-            {/* Optional: Navigation buttons */}
-            <div className="flex justify-center gap-2 mt-6">
-              {travelCards.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveIndex(index)}
-                  className={`h-3 w-3 rounded-full ${
-                    activeIndex === index ? 'bg-teal-600' : 'bg-gray-300'
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
+                {/* Foreground card - rotates right on hover */}
+                <motion.div
+                  className="absolute top-0 left-0 w-full h-full bg-amber-100 rounded-3xl p-6 flex flex-col justify-between cursor-pointer"
+                  initial={{ zIndex: 1 }}
+                  whileHover={{
+                    rotate: 15,
+                    y: -10,
+                    x: 100,
+                    scale: 1.02,
+                    zIndex: 10,
+                    backgroundColor: 'rgba(255, 255, 255, 1)',
+                  }}
+                  animate={hoveredId === card.id ? 'hover' : 'initial'}
+                  onHoverStart={() => setHoveredId(card.id)}
+                  onHoverEnd={() => setHoveredId(null)}
+                  transition={{ type: 'tween', duration: 0.3 }}
+                >
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-800">
+                      {card.name}
+                    </h3>
+                    <p className="text-gray-600">{card.subtitle}</p>
+                  </div>
+                  <div>
+                    <Quote className="text-teal-700 mb-2 h-6 w-6" />
+                    <p className="text-gray-700">{card.quote}</p>
+                  </div>
+                </motion.div>
+              </div>
+            ))}
           </motion.div>
-        </div>
+
+          {/* Optional: Navigation buttons */}
+          <div className="flex justify-center gap-2 mt-6">
+            {travelCards.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveIndex(index)}
+                className={`h-3 w-3 rounded-full ${
+                  activeIndex === index ? 'bg-teal-600' : 'bg-gray-300'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </motion.div>
       </div>
     </div>
   );

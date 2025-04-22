@@ -2,6 +2,14 @@
 
 import React, { useEffect, useRef } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
+import { Marquee } from './magicui/marquee';
+import { Lora } from 'next/font/google';
+import Image from 'next/image';
+
+const lora = Lora({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+});
 
 const travelItems = [
   {
@@ -12,7 +20,7 @@ const travelItems = [
   {
     id: 2,
     title: 'Beach Paradise',
-    tag: '#CoolTrips',
+    tag: '#Freedom',
   },
   {
     id: 3,
@@ -21,11 +29,15 @@ const travelItems = [
   },
   {
     id: 4,
-    title: 'Desert Adventure',
-    tag: '#Traveler',
+    image: '/sliderImage.png',
   },
   {
     id: 5,
+    title: 'Desert Adventure',
+    tag: '#Beyond Borders',
+  },
+  {
+    id: 6,
     title: 'Jungle Trek',
     tag: '#WanderVibe',
   },
@@ -139,33 +151,31 @@ const Community = () => {
       </div>
 
       <div className="relative w-full overflow-hidden py-12 ">
-        <motion.div
-          className="flex w-fit"
-          animate={{
-            x: ['0%', '-100%'],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        >
+        <Marquee className="[--duration:20s]" pauseOnHover>
           {travelItems.map((item, index) => (
-            <motion.div
+            <div
               key={`${item.id}-${index}`}
-              className="flex-shrink-0 mx-4 rounded-xl space-x-10 "
-              whileHover={{ y: -10 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+              className="flex-shrink-0 mx-4 rounded-xl space-x-10 flex items-center "
             >
-              <div className="p-4">
-                {/* <h3 className="font-bold text-lg">{item.title}</h3> */}
-                <p className="text-white font-medium uppercase text-5xl tracking-wider space-x-3">
+              <div className="p-4 flex items-center ">
+                <p
+                  className={`${lora.className} text-white font-normal uppercase text-5xl tracking-wider space-x-3`}
+                >
                   {item.tag}
                 </p>
+                {item.image && (
+                  <Image
+                    src={item.image}
+                    alt="slider"
+                    width={1000}
+                    height={1000}
+                    className="object-cover w-full h-full"
+                  />
+                )}
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </Marquee>
 
         {/* Gradient overlays for better UX */}
         {/* <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-sky-100 to-transparent z-10" />
