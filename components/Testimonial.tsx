@@ -28,7 +28,7 @@ export default function TravelCardCarousel() {
       name: 'Ahana D',
       subtitle: 'A trip to the mountains',
       quote:
-        "I was nervous at first, but the app's community vibe and safety features put me at ease. Ended up having a great night!",
+        "I was nervous at first, but the app's community, vibe, and safety features put me at ease. I ended up having a great night!",
       image: TestimonialProfile2,
     },
     {
@@ -44,7 +44,7 @@ export default function TravelCardCarousel() {
       name: 'Aakash N',
       subtitle: 'Beach cleanup',
       quote:
-        "Met five strangers for a beach cleanup, now we're planning a trek together next month!",
+        "Met five strangers for a beach cleanup. Now we're planning a trek together next month!",
       image: '/personTestimonials.png',
     },
     {
@@ -60,7 +60,7 @@ export default function TravelCardCarousel() {
       name: 'Vedika P',
       subtitle: 'Solo camping trip',
       quote:
-        'Found a last-minute camping trip on KITA, went solo, came back with 5 new friends!',
+        'Found a last-minute camping trip on KITA, went solo, and came back with five new friends!',
       image: '/personTestimonials.png',
     },
   ];
@@ -74,7 +74,7 @@ export default function TravelCardCarousel() {
   return (
     <div className="w-full max-w-7xl mx-auto px-4 py-12 relative">
       <h2 className="text-5xl max-sm:text-4xl font-normal text-center mb-10">
-        What Our Travelers Say
+        What Our Explorers Say
       </h2>
       {/* Optional Illustration */}
       <div className="absolute right-0 sm:right-10 -top-0 opacity-80 ">

@@ -1,22 +1,46 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const socialMedia = [
+const hashTags = [
   {
     id: 1,
-    tag: '#Instagram',
+    tag: '#ExploreTogether',
   },
   {
     id: 2,
-    tag: '#Facebook',
+    tag: '#TravelBuddies',
   },
   {
     id: 3,
-    tag: '#LinkedIn',
+    tag: '#StrangersToFriends',
   },
   {
     id: 4,
-    tag: '#Twitter',
+    tag: '#WhereToNext',
+  },
+  {
+    id: 5,
+    tag: '#SharedJourneys',
+  },
+  {
+    id: 6,
+    tag: '#EventEscapes',
+  },
+  {
+    id: 7,
+    tag: '#LostInTransit',
+  },
+  {
+    id: 8,
+    tag: '#KitaKulture',
+  },
+  {
+    id: 9,
+    tag: '#KitaVibes',
+  },
+  {
+    id: 10,
+    tag: '#KitaCommunity',
   },
 ];
 
@@ -34,7 +58,7 @@ const TextSlider = () => {
           ease: 'linear',
         }}
       >
-        {socialMedia.map((item, index) => (
+        {hashTags.map((item, index) => (
           <motion.div
             key={`${item.id}-${index}`}
             className="flex-shrink-0 mx-4 rounded-xl space-x-10 "

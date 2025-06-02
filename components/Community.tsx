@@ -14,32 +14,47 @@ const lora = Lora({
 const travelItems = [
   {
     id: 1,
-    title: 'Mountain Escape',
-    tag: '#WanderVibe',
+    tag: '#ExploreTogether',
   },
   {
     id: 2,
-    title: 'Beach Paradise',
-    tag: '#Freedom',
+    tag: '#TravelBuddies',
   },
   {
     id: 3,
-    title: 'Urban Explorer',
-    tag: '#CoolVibes',
+    tag: '#StrangersToFriends',
   },
   {
     id: 4,
-    image: '/sliderImage.png',
+    tag: '#WhereToNext',
   },
   {
     id: 5,
-    title: 'Desert Adventure',
-    tag: '#Beyond Borders',
+    image: '/sliderImage.png',
   },
   {
     id: 6,
-    title: 'Jungle Trek',
-    tag: '#WanderVibe',
+    tag: '#EventEscapes',
+  },
+  {
+    id: 7,
+    tag: '#LostInTransit',
+  },
+  {
+    id: 8,
+    tag: '#KitaKulture',
+  },
+  {
+    id: 9,
+    tag: '#SharedJourneys',
+  },
+  {
+    id: 10,
+    tag: '#KitaVibes',
+  },
+  {
+    id: 11,
+    tag: '#KitaCommunity',
   },
 ];
 
@@ -151,7 +166,7 @@ const Community = () => {
       </div>
 
       <div className="relative w-full overflow-hidden py-12 ">
-        <Marquee className="[--duration:20s]" pauseOnHover>
+        <Marquee className="[--duration:40s]" pauseOnHover>
           {travelItems.map((item, index) => (
             <div
               key={`${item.id}-${index}`}
